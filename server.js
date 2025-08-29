@@ -2,6 +2,8 @@
 const http = require("http");
 const fs = require("fs/promises");
 const path = require("path");
+const os = require("os");
+const { exec } = require("child_process")
 
 // variables
 const PORT = 3000;
@@ -33,16 +35,17 @@ http
         res.writeHead(404, { "content-type": "text/plain" });
         return res.end("404 - file not found");
       }
-      let filePath = path.join(__dirname,"public", file);
-      if (req.url.startsWith("/assets")) filePath = path.join(__dirname, req.url.slice(1))
+      let filePath = path.join(__dirname, "public", file);
+      if (req.url.startsWith("/assets"))
+        filePath = path.join(__dirname, req.url.slice(1));
 
       try {
         const data = await fs.readFile(filePath);
         const ext = path.extname(filePath);
         const type = mimeType[ext];
 
-        res.writeHead(200, {"content-type": type});
-        res.end(data)
+        res.writeHead(200, { "content-type": type });
+        res.end(data);
       } catch (err) {
         res.writeHead(404, { "content-type": "text/plain" });
         res.end("404 - file not found");
@@ -53,5 +56,7 @@ http
     }
   })
   .listen(PORT, () => {
-    console.log(`server is running on http://localhost:${PORT}`);
+    const link = `http://localhost:${PORT}`
+    console.log(`server is running on ${link}`);
+    if (os.platform().toLocaleLowerCase() === "linux")  exec(`brave-browser ${link}`);
   });
