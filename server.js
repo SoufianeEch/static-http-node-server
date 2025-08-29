@@ -25,7 +25,6 @@ const allowedRoutes = {
 };
 
 // actual server
-
 http
   .createServer(async (req, res) => {
     if (req.method === "GET") {
@@ -58,5 +57,5 @@ http
   .listen(PORT, () => {
     const link = `http://localhost:${PORT}`
     console.log(`server is running on ${link}`);
-    if (os.platform().toLocaleLowerCase() === "linux")  exec(`brave-browser ${link}`);
+    if (os.platform().toLocaleLowerCase() === "linux") exec(`xdg-open ${link}`);
   });

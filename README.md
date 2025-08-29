@@ -40,7 +40,7 @@ A lightweight Node.js server that serves **HTML, CSS, JS, images, and audio/vide
 git clone https://github.com/SoufianeEch/static-http-node-server.git
 
 # Enter project
-cd <repo-name>
+cd static-http-node-server
 
 # Run server
 node server.js
