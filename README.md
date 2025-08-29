@@ -37,7 +37,7 @@ A lightweight Node.js server that serves **HTML, CSS, JS, images, and audio/vide
 
 ```bash
 # Clone repo
-git clone https://github.com/<your-username>/<repo-name>.git
+git clone https://github.com/SoufianeEch/static-http-node-server.git
 
 # Enter project
 cd <repo-name>
